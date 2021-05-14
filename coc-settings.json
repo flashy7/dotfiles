@@ -1,0 +1,13 @@
+{
+  "languageserver": {
+    "go": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "trace.server": "verbose",
+      "filetypes": ["go"]
+    }
+  },
+  "coc.preferences.hoverTarget": "echo",
+  "signature.target": "echo"
+}
+
