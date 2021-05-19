@@ -39,7 +39,7 @@ make_home_symlink() {
 
 mkdir -p "$HOME/.cache/zsh"
 
-dotfiles=".config/nvim .tmux.conf .tmux.conf.local"
+dotfiles=".config/nvim .config/zsh .tmux.conf .tmux.conf.local .zshenv"
 for dotfile in $dotfiles; do
     make_home_symlink "$dotfile"
 done
