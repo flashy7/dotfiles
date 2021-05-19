@@ -15,6 +15,7 @@ set undofile
 set incsearch
 set relativenumber
 set colorcolumn=80
+" set ttimeoutlen=50
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
@@ -26,12 +27,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'morhetz/gruvbox'
 " Plug 'tpope/vim-fugitive'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'schooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nvim-lua/plenary.nvim'
@@ -40,13 +40,15 @@ Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
 
 let g:airline_powerline_fonts = 1
-let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_contrast_dark = 'hard'
 let g:airline#extensions#tabline#enabled = 1
 colorscheme gruvbox
 
 nmap <C-n> :NERDTreeToggle<CR>
-nmap <C-/> :NERDCommenterToggle
+map <C-_> <plug>NERDCommenterToggle
 
+let g:NERDDefaultAlign = 'left'
+let g:NERDSpaceDelims = 1
 let g:NERDTreeGitStatusWithFlags = 1
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -87,4 +89,6 @@ map <C-i> :tabn<CR>
 map <C-o> :tabp<CR>
 map <C-u> :tabnew<CR>
 
+
+filetype plugin on
 
