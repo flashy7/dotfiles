@@ -1,7 +1,7 @@
 autoload -U colors && colors
 setopt promptsubst
 
-source $HOME/.config/zsh/git.zsh
+source $HOME/.config/zsh/plugins/git.zsh
 # source $HOME/.config/zsh/agnoster.zsh-theme
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
