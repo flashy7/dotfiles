@@ -1,5 +1,6 @@
 autoload -U colors && colors
 setopt promptsubst
+alias ls='ls --color=auto'
 
 source $HOME/.config/zsh/plugins/git.zsh
 # source $HOME/.config/zsh/agnoster.zsh-theme
@@ -31,6 +32,8 @@ compinit
 _comp_options+=(globdots)		# Include hidden files
 
 source $HOME/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source $HOME/.config/zsh/plugins/command-not-found.plugin.zsh
+source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
