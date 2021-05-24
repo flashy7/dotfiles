@@ -91,6 +91,7 @@ endif
 map <C-i> :tabn<CR>
 map <C-o> :tabp<CR>
 " map <C-u> :tabnew<CR>
+inoremap jj <ESC>
 
 " Indents on new line {}, [], ()
 inoremap {<cr> {<cr>}<c-o>O
