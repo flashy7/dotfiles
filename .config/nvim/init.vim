@@ -6,6 +6,7 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set nu
+set ic
 set nowrap
 set smartcase
 set noswapfile
@@ -15,8 +16,10 @@ set undofile
 set incsearch
 set relativenumber
 set colorcolumn=80
+set clipboard+=unnamedplus
 " set ttimeoutlen=50
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+" highlight ColorColumn ctermbg=0 guibg=lightgrey
+set nohlsearch
 
 call plug#begin('~/.vim/plugged')
 
@@ -87,8 +90,26 @@ endif
 " move among buffers with CTRL
 map <C-i> :tabn<CR>
 map <C-o> :tabp<CR>
-map <C-u> :tabnew<CR>
+" map <C-u> :tabnew<CR>
 
+" Indents on new line {}, [], ()
+inoremap {<cr> {<cr>}<c-o>O
+inoremap [<cr> [<cr>]<c-o>O
+inoremap (<cr> (<cr>)<c-o>O
 
 filetype plugin on
+
+" Unmap shift+K of vim-go
+let g:go_doc_keywordprg_enabled = 0
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 

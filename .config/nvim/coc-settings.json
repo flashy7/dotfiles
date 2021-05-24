@@ -7,7 +7,9 @@
       "filetypes": ["go"]
     }
   },
-  "coc.preferences.hoverTarget": "echo",
-  "signature.target": "echo"
+  "signature.target": "float",
+  "diagnostic.messageTarget": "float",
+  "python.jediEnabled": false,
+  "suggest.enablePreview": true
 }
 
