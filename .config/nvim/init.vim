@@ -43,7 +43,7 @@ Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
 
 let g:airline_powerline_fonts = 1
-" let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_dark = 'soft'
 let g:airline#extensions#tabline#enabled = 1
 colorscheme gruvbox
 

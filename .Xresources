@@ -15,12 +15,24 @@
 *color14: #fcaf3e
 *color15: #EEEEEC
 
-URxvt.font: xft:Consolas NF:style=Book:size=11
-! URxvt.font: xft:RobotoMono Nerd Font:style=Regular:size=11
+URxvt.font: xft:Consolas NF:style=Book:size=10.5
+! URxvt.font: xft:RobotoMono Nerd Font:style=Regular:size=10.5
+URxvt*cursorBlink: true
 
 URxvt.scrollBar: false
-URxvt.letterSpace: -1
+URxvt.geometry: 90x18
 
 URxvt.foreground: #D3D7CF
 URxvt.background: #2F2F2F
+
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+URxvt.keysym.Control-k: command:\033]720;1\007
+URxvt.keysym.Control-j: command:\033]721;1\007
 
