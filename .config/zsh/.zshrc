@@ -35,9 +35,9 @@ source $HOME/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $HOME/.config/zsh/plugins/command-not-found.plugin.zsh
 source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Edit line in vim with ctrl-e:
+# Edit line in vim with ctrl-r:
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^r' edit-command-line
+bindkey '^x' edit-command-line
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char

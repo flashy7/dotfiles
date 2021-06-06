@@ -27,6 +27,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'morhetz/gruvbox'
 " Plug 'tpope/vim-fugitive'
@@ -39,12 +40,21 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'lervag/vimtex'
 
 call plug#end()
+
+" Vimtex autocompile on save
+map <F3> :VimtexCompile<CR>
+" Spell check toggle on F6
+map <F6> :setlocal spell! spelllang=en_us<CR>
+nnoremap j gj
+nnoremap k gk
 
 let g:airline_powerline_fonts = 1
 let g:gruvbox_contrast_dark = 'soft'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 colorscheme gruvbox
 
 nmap <C-n> :NERDTreeToggle<CR>
@@ -93,11 +103,6 @@ map <C-o> :tabp<CR>
 " map <C-u> :tabnew<CR>
 inoremap jj <ESC>
 
-" Indents on new line {}, [], ()
-inoremap {<cr> {<cr>}<c-o>O
-inoremap [<cr> [<cr>]<c-o>O
-inoremap (<cr> (<cr>)<c-o>O
-
 filetype plugin on
 
 " Unmap shift+K of vim-go
@@ -113,4 +118,12 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+fun! MyCR()
+    if strpart(getline('.'), col('.') - 2, 2) == '{}'
+        return "\<CR>\<CR>\<Up>\<ESC>\S"
+    endif
+    return "\<CR>"
+endfun
+inoremap <CR> <C-R>=MyCR()<CR>
 

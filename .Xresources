@@ -16,8 +16,7 @@
 *color15: #EEEEEC
 
 URxvt.font: xft:Consolas NF:style=Book:size=10.5
-! URxvt.font: xft:RobotoMono Nerd Font:style=Regular:size=10.5
-URxvt*cursorBlink: true
+URxvt.letterSpace: -0.5
 
 URxvt.scrollBar: false
 URxvt.geometry: 90x18
@@ -36,3 +35,6 @@ URxvt.iso14755_52: false
 URxvt.keysym.Control-k: command:\033]720;1\007
 URxvt.keysym.Control-j: command:\033]721;1\007
 
+URxvt.perl-ext-common: default,keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keyboard-select.clipboard: true
