@@ -42,6 +42,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'lervag/vimtex'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat' " vim-surround requires this to make . work
 call plug#end()
 
 " Vimtex autocompile on save
