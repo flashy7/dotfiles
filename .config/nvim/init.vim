@@ -15,11 +15,12 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set relativenumber
-set colorcolumn=80
+" set colorcolumn=80
 set clipboard+=unnamedplus
 " set ttimeoutlen=50
 " highlight ColorColumn ctermbg=0 guibg=lightgrey
 set nohlsearch
+set noshowmode
 
 call plug#begin('~/.vim/plugged')
 
@@ -30,18 +31,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'morhetz/gruvbox'
-" Plug 'tpope/vim-fugitive'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdcommenter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'lervag/vimtex'
-
 call plug#end()
 
 " Vimtex autocompile on save
@@ -51,11 +51,22 @@ map <F6> :setlocal spell! spelllang=en_us<CR>
 nnoremap j gj
 nnoremap k gk
 
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 let g:gruvbox_contrast_dark = 'soft'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#branch#enabled = 1
 colorscheme gruvbox
+
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
 
 nmap <C-n> :NERDTreeToggle<CR>
 map <C-_> <plug>NERDCommenterToggle
@@ -98,8 +109,8 @@ if executable('rg')
 endif
 
 " move among buffers with CTRL
-map <C-i> :tabn<CR>
-map <C-o> :tabp<CR>
+" map <C-i> :tabn<CR>
+" map <C-o> :tabp<CR>
 " map <C-u> :tabnew<CR>
 inoremap jj <ESC>
 
