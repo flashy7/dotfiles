@@ -54,4 +54,4 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 # Butthead direct login
 alias butthead='ssh -t bajelidze@login.comsys.rwth-aachen.de ssh -t bajelidze@butthead.comsys.rwth-aachen.de'
-
+alias dcrm='docker rm $(docker ps -qa) -fv'
