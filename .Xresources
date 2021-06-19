@@ -15,7 +15,8 @@
 *color14: #fcaf3e
 *color15: #EEEEEC
 
-URxvt.font: xft:Consolas NF:style=Book:size=10.5
+URxvt.font: xft:Consolas NF:style=Book:size=10
+! URxvt.font: xft:Inconsolata Nerd Font Mono:style=Medium:size=11
 URxvt.letterSpace: -0.5
 
 URxvt.scrollBar: false
@@ -38,3 +39,11 @@ URxvt.keysym.Control-j: command:\033]721;1\007
 URxvt.perl-ext-common: default,keyboard-select
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keyboard-select.clipboard: true
+
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
