@@ -80,10 +80,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -188,10 +188,16 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+u resize shrink width 10 px or 10 ppt
+bindsym $mod+o resize grow height 10 px or 10 ppt
+bindsym $mod+i resize shrink height 10 px or 10 ppt
+bindsym $mod+p resize grow width 10 px or 10 ppt
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        # tray_output primary
         colors {
             background $bg-color
             separator #757575
@@ -211,14 +217,14 @@ set $text-color          #f3f4f5
 set $inactive-text-color #4A4646
 set $urgent-bg-color     #E53935
 set $inactive-border     #2f343f
-set $focused-border      #768504
+set $focused-border      #4287f5
 
 # window colors
-#                       border              background         text                 indicator
-client.focused          $focused-border           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-border $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+#                       border           background       text                 indicator
+client.focused          $focused-border  $focused-border  $text-color          $focused-border
+client.unfocused        $inactive-border $inactive-border $inactive-text-color $inactive-border
+client.focused_inactive $inactive-border $inactive-border $inactive-text-color $inactive-border
+client.urgent           $urgent-bg-color $urgent-bg-color $text-color          $urgent-bg-color
 
 bindsym $mod+c exec google-chrome --password-store=gnome
 bindsym $mod+z exec pavucontrol
@@ -236,6 +242,16 @@ for_window [window_type="menu"]                         floating enable
 default_border pixel 1
 default_floating_border pixel 1
 
+gaps inner 9
+gaps outer 0
+# smart_gaps on
+
+workspace $ws1 gaps inner 0
+workspace $ws1 gaps outer 0
+
+exec "setxkbmap -layout us,ru,de"
+exec "setxkbmap -option 'grp:alt_shift_toggle'"
 exec element-desktop --hidden
 exec feh --bg-scale /home/irakli/Pictures/wallpaper.jpg
 exec pulseaudio --start
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon

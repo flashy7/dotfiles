@@ -40,6 +40,9 @@ URxvt.perl-ext-common: default,keyboard-select
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keyboard-select.clipboard: true
 
+! URxvt.transparent: true
+! URxvt.shading: 10
+
 Xft.autohint: 0
 Xft.antialias: 1
 Xft.hinting: true
