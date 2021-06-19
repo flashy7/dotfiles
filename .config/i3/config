@@ -242,7 +242,7 @@ for_window [window_type="menu"]                         floating enable
 default_border pixel 1
 default_floating_border pixel 1
 
-gaps inner 9
+gaps inner 14
 gaps outer 0
 # smart_gaps on
 
@@ -251,7 +251,8 @@ workspace $ws1 gaps outer 0
 
 exec "setxkbmap -layout us,ru,de"
 exec "setxkbmap -option 'grp:alt_shift_toggle'"
+exec --no-startup-id compton
 exec element-desktop --hidden
-exec feh --bg-scale /home/irakli/Pictures/wallpaper.jpg
+exec feh --bg-scale /home/irakli/Pictures/wallpaper2.jpg
 exec pulseaudio --start
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
