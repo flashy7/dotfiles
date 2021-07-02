@@ -38,14 +38,14 @@ Plug 'preservim/nerdcommenter'
 Plug 'itchyny/lightline.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat' " vim-surround requires this to make . work
 
 call plug#end()
 
 " Vimtex autocompile on save
-" map <F3> :VimtexCompile<CR>
+" map <F3> :w \| :! pdflatex %<CR><CR>
 " Spell check toggle on F6
 map <F6> :setlocal spell! spelllang=en_us<CR>
 

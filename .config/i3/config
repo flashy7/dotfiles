@@ -55,7 +55,7 @@ bindsym $mod+bracketleft exec xbacklight -dec 10 # decrease screen brightness
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec rxvt-unicode
+bindsym $mod+Return exec urxvtc
 
 # kill focused window
 bindsym $mod+q kill
@@ -226,10 +226,13 @@ client.unfocused        $inactive-border $inactive-border $inactive-text-color $
 client.focused_inactive $inactive-border $inactive-border $inactive-text-color $inactive-border
 client.urgent           $urgent-bg-color $urgent-bg-color $text-color          $urgent-bg-color
 
-bindsym $mod+c exec google-chrome --password-store=gnome
+bindsym $mod+c exec google-chrome --password-store=gnome --wm-window-animations-disabled
 bindsym $mod+z exec pavucontrol
+bindsym Print       exec flameshot full -p ~/Pictures
+bindsym Shift+Print exec flameshot gui
 
 for_window [class="Pavucontrol"] floating enable
+for_window [class="Steam"] floating enable
 for_window [window_role="pop-up"]                       floating enable
 for_window [window_role="bubble"]                       floating enable
 for_window [window_role="task_dialog"]                  floating enable
@@ -237,22 +240,22 @@ for_window [window_role="Preferences"]                  floating enable
 for_window [window_type="dialog"]                       floating enable
 for_window [window_type="menu"]                         floating enable
 
-# default_border pixel 1
-# default_floating_border pixel 1
 default_border pixel 1
 default_floating_border pixel 1
 
 gaps inner 14
 gaps outer 0
-# smart_gaps on
 
 workspace $ws1 gaps inner 0
 workspace $ws1 gaps outer 0
 
-exec "setxkbmap -layout us,ru,de"
-exec "setxkbmap -option 'grp:alt_shift_toggle'"
+# exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start
+exec --no-startup-id urxvtd -q &
 exec element-desktop --hidden
-exec feh --bg-scale /home/irakli/Pictures/wallpaper2.jpg
-exec pulseaudio --start
+exec --no-startup-id redshift-gtk
+exec --no-startup-id feh --bg-scale /home/irakli/Pictures/wp.png
+exec --no-startup-id pulseaudio --start
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec --no-startup-id "setxkbmap -layout us,ru,de -option 'grp:alt_shift_toggle'"

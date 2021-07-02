@@ -57,3 +57,5 @@ alias butthead='ssh -t bajelidze@login.comsys.rwth-aachen.de ssh -t bajelidze@bu
 alias dcrm='docker rm $(docker ps -qa) -fv'
 alias cdd='cd ~/Downloads'
 alias cdD='cd ~/Desktop'
+
+export EDITOR=nvim
