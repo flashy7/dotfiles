@@ -23,10 +23,8 @@ set shortmess+=c
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-fugitive'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'preservim/nerdcommenter'
-Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'tpope/vim-surround'
@@ -44,45 +42,23 @@ Plug 'nvim-telescope/telescope.nvim' " Fuzzy finder
 Plug 'norcalli/nvim-colorizer.lua' " Colorizes RGB color codes
 Plug 'Mofiqul/vscode.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'hoob3rt/lualine.nvim'
 
 call plug#end()
-
-let g:vscode_style = "dark"
-colorscheme vscode
-
-" Spell check toggle on F6
-map <F6> :setlocal spell! spelllang=en_us<CR>
-
-nnoremap j gj
-nnoremap k gk
-inoremap jj <ESC>
-
-nnoremap <SPACE> <Nop>
-let mapleader=" "
-nnoremap <leader>d "_d
-xnoremap <leader>d "_d
-
-map <C-_> <plug>NERDCommenterToggle
-nnoremap <C-n> :NvimTreeToggle<CR>
-
-filetype plugin on
-
-let g:lightline = {
-    \ 'colorscheme': 'one',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'gitbranch': 'FugitiveHead'
-    \ },
-    \ }
 
 lua <<EOF
 require('nvim-treesitter.configs').setup { highlight = { enable = true }}
 require('gitsigns').setup()
 require('telescope').setup()
 require('colorizer').setup()
+
+local lualine_codedark = require'lualine.themes.codedark'
+require('lualine').setup{
+    options = {
+        theme = lualine_codedark,
+        section_separators = {},
+    },
+}
 
 require('lspkind').init({
     with_text = true,
@@ -141,6 +117,26 @@ for _, lsp in ipairs(servers) do
     }
 end
 EOF
+
+let g:vscode_style = "dark"
+colorscheme vscode
+
+" Spell check toggle on F6
+map <F6> :setlocal spell! spelllang=en_us<CR>
+
+nnoremap j gj
+nnoremap k gk
+inoremap jj <ESC>
+
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+
+map <C-_> <plug>NERDCommenterToggle
+nnoremap <C-n> :NvimTreeToggle<CR>
+
+filetype plugin on
 
 " LSP Complete Configs
 " Use <Tab> and <S-Tab> to navigate through popup menu
