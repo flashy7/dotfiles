@@ -55,7 +55,7 @@ bindsym $mod+bracketleft exec xbacklight -dec 10 # decrease screen brightness
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -259,3 +259,4 @@ exec --no-startup-id feh --bg-scale /home/irakli/Pictures/wp.png
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 exec --no-startup-id "setxkbmap -layout us,ru,de -option 'grp:alt_shift_toggle'"
+exec --no-startup-id ~/.config/i3/i3-battery-popup/i3-battery-popup -n -t 30s -N -s ~/.config/i3/i3-battery-popup/i3-battery-popup.wav -v 50 -L 20
