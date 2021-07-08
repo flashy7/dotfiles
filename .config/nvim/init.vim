@@ -20,30 +20,33 @@ set noshowmode
 set completeopt=menuone,noinsert,noselect
 set termguicolors
 set shortmess+=c
+set background=dark
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'preservim/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
+"Plug 'miyakogi/seiya.vim' " Enables transparency
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat' " vim-surround requires this to make . work
 
 " Neovim v0.5 plugins
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim' " Needed for gitsigns and telescope
 Plug 'lewis6991/gitsigns.nvim' " Like git gutter
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'onsails/lspkind-nvim'
+Plug 'nvim-lua/completion-nvim' " Autocompletion based on LSP
+Plug 'onsails/lspkind-nvim' " Shows icons next to autocompletions
 Plug 'nvim-lua/popup.nvim' " Needed for telescope
 Plug 'nvim-telescope/telescope.nvim' " Fuzzy finder
 Plug 'norcalli/nvim-colorizer.lua' " Colorizes RGB color codes
-Plug 'Mofiqul/vscode.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hoob3rt/lualine.nvim'
 
+Plug 'Mofiqul/vscode.nvim'
+"Plug 'folke/tokyonight.nvim'
 call plug#end()
 
 lua <<EOF
@@ -55,7 +58,7 @@ require('colorizer').setup()
 local lualine_codedark = require'lualine.themes.codedark'
 require('lualine').setup{
     options = {
-        theme = lualine_codedark,
+        theme = 'vscode',
         section_separators = {},
     },
 }
@@ -69,7 +72,7 @@ require('lspkind').init({
       Function = 'ƒ',
       Constructor = '',
       Variable = '',
-      Class = '',
+      Class = '',
       Interface = 'ﰮ',
       Module = '',
       Property = '',
@@ -107,7 +110,7 @@ local on_attach = function(client, bufnr)
     require 'completion'.on_attach()
 end
 
-local servers = { "pyright", "gopls", "bashls" }
+local servers = { "pyright", "gopls", "bashls", "texlab" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -120,6 +123,10 @@ EOF
 
 let g:vscode_style = "dark"
 colorscheme vscode
+
+" Nvim transparency
+let g:seiya_auto_enable = 1
+let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
 
 " Spell check toggle on F6
 map <F6> :setlocal spell! spelllang=en_us<CR>

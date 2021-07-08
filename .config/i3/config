@@ -250,12 +250,12 @@ workspace $ws1 gaps inner 0
 workspace $ws1 gaps outer 0
 
 # exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id feh --bg-scale /home/irakli/Pictures/wp.png
+exec --no-startup-id picom
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start
 exec --no-startup-id urxvtd -q &
 exec element-desktop --hidden
 exec --no-startup-id redshift-gtk
-exec --no-startup-id feh --bg-scale /home/irakli/Pictures/wp.png
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 exec --no-startup-id "setxkbmap -layout us,ru,de -option 'grp:alt_shift_toggle'"
