@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $1 == "" ]]; then
+    echo "Missing an argument: channel name"
+    exit 1
+fi
+
+if [[ $2 == "-c" ]]; then
+    chatterino -c $1 & disown
+fi
+
+devour streamlink --twitch-low-latency --player=mpv --hls-live-edge=1 twitch.tv/$1 best

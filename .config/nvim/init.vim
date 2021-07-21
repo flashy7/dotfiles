@@ -30,6 +30,9 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat' " vim-surround requires this to make . work
+"Plug 'fatih/vim-go'
+Plug 'mattn/vim-goimports'
+Plug 'tomlion/vim-solidity'
 
 " Neovim v0.5 plugins
 Plug 'kyazdani42/nvim-web-devicons'
@@ -44,6 +47,7 @@ Plug 'nvim-telescope/telescope.nvim' " Fuzzy finder
 Plug 'norcalli/nvim-colorizer.lua' " Colorizes RGB color codes
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hoob3rt/lualine.nvim'
+Plug 'glepnir/dashboard-nvim'
 
 Plug 'Mofiqul/vscode.nvim'
 "Plug 'folke/tokyonight.nvim'
@@ -55,7 +59,6 @@ require('gitsigns').setup()
 require('telescope').setup()
 require('colorizer').setup()
 
-local lualine_codedark = require'lualine.themes.codedark'
 require('lualine').setup{
     options = {
         theme = 'vscode',
@@ -124,12 +127,23 @@ EOF
 let g:vscode_style = "dark"
 colorscheme vscode
 
+let g:dashboard_default_executive = 'telescope'
+let g:dashboard_custom_header = [
+\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
+\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
+\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
+\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
+\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
+\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
+\]
+
 " Nvim transparency
-let g:seiya_auto_enable = 1
-let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
+"let g:seiya_auto_enable = 1
+"let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
 
 " Spell check toggle on F6
 map <F6> :setlocal spell! spelllang=en_us<CR>
+map <F7> :set nowrap!<CR>
 
 nnoremap j gj
 nnoremap k gk

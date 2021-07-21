@@ -58,4 +58,15 @@ alias dcrm='docker rm $(docker ps -qa) -fv'
 alias cdd='cd ~/Downloads'
 alias cdD='cd ~/Desktop'
 
+# Devour aliases
+alias mpv='devour mpv'
+alias zathura='devour zathura'
+alias sxiv='devour sxiv'
+alias evince='devour evince'
+alias wireshark='devour wireshark'
+
+alias streamlink='streamlink --twitch-low-latency --hls-live-edge=1 --player=mpv'
+
+alias geth2='~/go-ethereum/build/bin/geth'
+
 export EDITOR=nvim
