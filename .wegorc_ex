@@ -33,10 +33,10 @@ frontend=ascii-art-table
 jsn-no-indent=false
 
 # LOCATION to be queried (default 40.748,-73.985)
-location=Aachen
+location=city name here
 
 # openweathermap backend: the api KEY to use (default )
-owm-api-key=da572fc0148af02fef10d95bb37a0ad8
+owm-api-key=api key here
 
 # openweathermap backend: print raw requests and responses (default false)
 owm-debug=false

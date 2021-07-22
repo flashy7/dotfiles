@@ -160,7 +160,7 @@ client.unfocused        $inactive-border $inactive-border $inactive-text-color $
 client.focused_inactive $inactive-border $inactive-border $inactive-text-color $inactive-border
 client.urgent           $urgent-bg-color $urgent-bg-color $text-color          $urgent-bg-color
 
-bindsym $mod+c exec google-chrome --password-store=gnome --wm-window-animations-disabled
+bindsym $mod+c exec google-chrome-stable --password-store=gnome --wm-window-animations-disabled
 bindsym $mod+z exec pavucontrol
 bindsym Print       exec flameshot full -p ~/Pictures
 bindsym Shift+Print exec flameshot gui
@@ -185,13 +185,13 @@ gaps outer 0
 workspace $ws1 gaps inner 0
 workspace $ws1 gaps outer 0
 
-exec --no-startup-id feh --bg-scale /home/irakli/Pictures/wp.png
+exec --no-startup-id feh --bg-scale /home/irakli/Pictures/wallpaper3.jpg
 exec --no-startup-id nm-applet
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start
-exec --no-startup-id element-desktop --hidden
+#exec --no-startup-id /usr/bin/gnome-keyring-daemon --start
+#exec --no-startup-id element-desktop --hidden
 exec --no-startup-id redshift
-exec --no-startup-id pulseaudio --start
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+#exec --no-startup-id pulseaudio --start
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 exec --no-startup-id "setxkbmap -layout us,ru,de -option 'grp:alt_shift_toggle'"
 exec --no-startup-id ~/.config/i3/i3-battery-popup/i3-battery-popup -n -t 30s -N -s ~/.config/i3/i3-battery-popup/i3-battery-popup.wav -v 50 -L 20
 exec_always --no-startup-id ~/.config/polybar/launch.sh

@@ -20,8 +20,8 @@ PROMPT='%B%{$fg[green]%}%n%{$fg[green]%}@%{$fg[green]%}%M:%{$fg_bold[blue]%}%~%{
 RPROMPT='$(git_prompt_info)'
 
 # History cache
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=3000
+SAVEHIST=3000
 HISTFILE=~/.cache/zsh/history
 
 # Basic auto/tab complete:
@@ -68,5 +68,9 @@ alias wireshark='devour wireshark'
 alias streamlink='streamlink --twitch-low-latency --hls-live-edge=1 --player=mpv'
 
 alias geth2='~/go-ethereum/build/bin/geth'
+
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/go/bin
+export GTK_THEME=Adwaita:dark
 
 export EDITOR=nvim
