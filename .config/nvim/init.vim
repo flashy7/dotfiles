@@ -26,7 +26,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'miyakogi/seiya.vim' " Enables transparency
+Plug 'miyakogi/seiya.vim' " Enables transparency
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat' " vim-surround requires this to make . work
@@ -138,8 +138,8 @@ let g:dashboard_custom_header = [
 \]
 
 " Nvim transparency
-"let g:seiya_auto_enable = 1
-"let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
+let g:seiya_auto_enable = 1
+let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
 
 " Spell check toggle on F6
 map <F6> :setlocal spell! spelllang=en_us<CR>
@@ -156,6 +156,8 @@ xnoremap <leader>d "_d
 
 map <C-_> <plug>NERDCommenterToggle
 nnoremap <C-n> :NvimTreeToggle<CR>
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
 
 filetype plugin on
 
@@ -170,6 +172,9 @@ let g:completion_trigger_on_delete = 1
 let g:completion_confirm_key = ""
 imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
+
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
 
 " Find files using Telescope command-line sugar.
 nnoremap ff <cmd>Telescope find_files<cr>
