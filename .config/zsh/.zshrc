@@ -71,7 +71,4 @@ alias evince='devour evince'
 alias wireshark='devour wireshark'
 
 alias streamlink='streamlink --twitch-low-latency --hls-live-edge=1 --player=mpv'
-
-export PATH=$PATH:$HOME/go-ethereum/build/bin
-
-export EDITOR=nvim
+alias lf='~/.config/lf/lfrun'

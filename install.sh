@@ -37,9 +37,11 @@ make_home_symlink() {
     echo " done!"
 }
 
+sudo ln -s ~/.config/lf/lfrun /usr/local/bin
+
 mkdir -p "$HOME/.cache/zsh"
 
-dotfiles=".config/nvim .config/polybar .config/zsh .config/alacritty .config/i3 .config/redshift.conf .config/picom.conf .config/ranger .config/mpv .tmux.conf .zshenv .Xresources .urxvt .wegorc .gitconfig .xinitrc"
+dotfiles=".config/lf .config/.diricons .config/nvim .config/polybar .config/zsh .config/alacritty .config/i3 .config/redshift.conf .config/picom.conf .config/ranger .config/mpv .tmux.conf .zshenv .Xresources .urxvt .wegorc .gitconfig .xinitrc"
 for dotfile in $dotfiles; do
     make_home_symlink "$dotfile"
 done

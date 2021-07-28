@@ -123,7 +123,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+r exec st -e ranger
+bindsym $mod+r exec st -e lfrun
 
 bindsym $mod+u resize shrink width 10 px or 10 ppt
 bindsym $mod+o resize grow height 10 px or 10 ppt
@@ -160,7 +160,8 @@ client.unfocused        $inactive-border $inactive-border $inactive-text-color $
 client.focused_inactive $inactive-border $inactive-border $inactive-text-color $inactive-border
 client.urgent           $urgent-bg-color $urgent-bg-color $text-color          $urgent-bg-color
 
-bindsym $mod+c exec google-chrome-stable --password-store=gnome --wm-window-animations-disabled
+# bindsym $mod+c exec google-chrome-stable --password-store=gnome
+bindsym $mod+c exec firefox
 bindsym $mod+z exec pavucontrol
 bindsym Print       exec flameshot full -p ~/Pictures
 bindsym Shift+Print exec flameshot gui
@@ -185,13 +186,11 @@ gaps outer 0
 workspace $ws1 gaps inner 0
 workspace $ws1 gaps outer 0
 
-exec --no-startup-id feh --bg-scale /home/irakli/Pictures/wallpaper3.jpg
+exec --no-startup-id feh --bg-scale /home/irakli/Pictures/wp6.jpg
 exec --no-startup-id nm-applet
 exec --no-startup-id picom
-#exec --no-startup-id /usr/bin/gnome-keyring-daemon --start
 exec --no-startup-id element-desktop --hidden
 exec --no-startup-id redshift
-#exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 exec --no-startup-id clipit
 exec --no-startup-id xclip
 exec --no-startup-id syndaemon -d -m 50

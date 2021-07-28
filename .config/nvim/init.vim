@@ -24,6 +24,8 @@ set background=dark
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'lervag/vimtex'
+
 Plug 'preservim/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'miyakogi/seiya.vim' " Enables transparency
@@ -113,7 +115,7 @@ local on_attach = function(client, bufnr)
     require 'completion'.on_attach()
 end
 
-local servers = { "pyright", "gopls", "bashls", "texlab" }
+local servers = { "pyright", "gopls", "bashls" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
