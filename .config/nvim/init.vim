@@ -24,8 +24,6 @@ set background=dark
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'lervag/vimtex'
-
 Plug 'preservim/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'miyakogi/seiya.vim' " Enables transparency

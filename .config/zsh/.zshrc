@@ -59,6 +59,7 @@ alias ls='ls --color=auto'
 alias butthead='ssh -t bajelidze@login.comsys.rwth-aachen.de ssh -t bajelidze@butthead.comsys.rwth-aachen.de'
 alias dcrm='docker rm $(docker ps -qa) -fv'
 alias dp='docker ps -a'
+alias dcrmi='docker images | grep none | awk "{ print $3; }" | xargs docker rmi'
 
 alias cdd='cd ~/Downloads'
 alias cdD='cd ~/Desktop'

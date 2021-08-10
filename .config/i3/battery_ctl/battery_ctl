@@ -1,0 +1,48 @@
+#!/bin/sh
+
+set -e
+
+SLEEP_TIME=20
+WARN_CAP=30
+CRIT_CAP=15
+
+NOTIFY_ICON_WARN="/usr/share/icons/Adwaita/scalable/status/battery-level-30-symbolic.svg"
+NOTIFY_ICON_CRIT="/usr/share/icons/Adwaita/scalable/status/battery-level-10-symbolic.svg"
+WAV_LOC=$HOME"/.config/i3/battery_ctl/notif_sound.wav"
+
+get_battery_stats() {
+    acpi -b | awk -F'[,:%]' '{print $2, $3}'
+}
+
+play_sound() {
+    paplay "$WAV_LOC" --volume 32768
+}
+
+notify_warn() {
+    notify-send -u critical -t 5000 -i $NOTIFY_ICON_WARN "Warning! Low battery."
+    play_sound
+}
+
+notify_crit() {
+    notify-send -u critical -t 5000 -i $NOTIFY_ICON_CRIT \
+        "Reached critical battery threshold. Hibernating in 3 seconds..."
+    play_sound
+}
+
+while true; do
+    sleep $SLEEP_TIME
+    get_battery_stats | {
+        read -r status capacity
+
+        if [ "$status" = Discharging ]; then
+            if [ "$capacity" -le $CRIT_CAP ]; then
+                notify_crit
+                sleep 3
+                systemctl hibernate
+                exit 1
+            elif [ "$capacity" -le $WARN_CAP ]; then
+                notify_warn
+            fi
+        fi
+    }
+done

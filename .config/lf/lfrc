@@ -6,6 +6,7 @@ set icons
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
+set period 1
 
 # make sure trash folder exists
 %mkdir -p ~/Trash
@@ -19,6 +20,8 @@ map x extract
 map DD trash
 map DF delete
 map <f-6> set hidden!
+
+map zz $feh --bg-scale $f
 
 map gd cd ~/Downloads
 map gD cd ~/Desktop
