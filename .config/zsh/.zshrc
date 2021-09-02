@@ -53,7 +53,22 @@ source $HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --group-directories-first -h'
+alias cp='cp -iv'
+alias ln='ln -iv'
+alias mv='mv -iv'
+alias rm='rm -I --preserve-root'
+alias rmdir='rmdir -v'
+alias grep='grep --color=auto'
+alias mkdir='mkdir -vp'
+alias v='nvim'
+alias untar='tar -zxvf'
+alias ll='ls -la'
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias se='sudoedit'
 
 # Butthead direct login
 alias butthead='ssh -t bajelidze@login.comsys.rwth-aachen.de ssh -t bajelidze@butthead.comsys.rwth-aachen.de'

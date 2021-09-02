@@ -113,7 +113,7 @@ local on_attach = function(client, bufnr)
     require 'completion'.on_attach()
 end
 
-local servers = { "pyright", "gopls", "bashls" }
+local servers = { "pyright", "gopls", "bashls", "texlab" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -184,3 +184,11 @@ nnoremap fb <cmd>Telescope buffers<cr>
 " Nvim tree stuff
 let g:nvim_tree_special_files = {}
 let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache', '.vscode' ]
+
+" Stops yanking when pasting in visual mode
+vnoremap p pgvy
+
+" Ctrl+S to save
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
