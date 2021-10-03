@@ -2,6 +2,8 @@
 
 set -e
 
+killall battery_ctl
+
 SLEEP_TIME=20
 WARN_CAP=30
 CRIT_CAP=15
