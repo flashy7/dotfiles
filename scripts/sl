@@ -1,12 +1,11 @@
 #!/bin/bash
 
-if [[ $1 == "" ]]; then
-    echo "Missing an argument: channel name"
-    exit 1
-fi
+declare PLAYER="mpv" channel_name="$1"
 
-if [[ $2 == "-c" ]]; then
-    chatterino -c $1 & disown
-fi
+[[ -z "$channel_name" ]] && \
+    echo "Missing an argument: channel name" >&2 && exit 1
 
-devour streamlink --twitch-low-latency --player=mpv --hls-live-edge=1 twitch.tv/$1 best
+[[ "$2" == "-c" ]] && chatterino -c "$channel_name" & disown
+
+devour streamlink --twitch-low-latency --player="$PLAYER" \
+    --hls-live-edge=1 "twitch.tv/$channel_name" best

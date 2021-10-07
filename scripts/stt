@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
-XCWD=$(xcwd)
+XCWD="$(xcwd)"
 
-if [[ $XCWD == "/" ]]; then
+if [[ "$XCWD" == "/" ]]; then
     XCWD=~
 fi
 
-st -d $XCWD
+st -d "$XCWD"

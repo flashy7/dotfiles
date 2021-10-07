@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-set -e
+# set -e
+
+SCRIPT_DEST_DIR="/usr/local/bin"
 
 # Usage: make_home_symlink path_to_file name_of_file_in_home_to_symlink_to
 make_home_symlink() {
@@ -34,15 +36,47 @@ make_home_symlink() {
     fi
 
     ln -s "$THIS_DOTFILE_PATH" "$HOME_DOTFILE_PATH" 2>/dev/null
-    echo " done!"
+    echo "Done"
 }
 
-sudo ln -s ~/.config/lf/lfrun /usr/local/bin
+make_script_symlink() {
+    local -a scripts=("scripts/"*)
+    local wd=$(pwd)
+
+    for script in "${scripts[@]}"; do
+        src="$wd/$script"
+        dest="$SCRIPT_DEST_DIR/${script/scripts\/}"
+        echo "Installing $src into $dest"
+        sudo ln -s "$src" "$dest"
+    done
+}
 
 mkdir -p "$HOME/.cache/zsh"
 
-dotfiles=".config/lf .config/.diricons .config/nvim .config/polybar .config/zsh .config/alacritty .config/i3 .config/redshift.conf .config/picom.conf .config/ranger .config/mpv .tmux.conf .zshenv .Xresources .urxvt .wegorc .gitconfig .xinitrc"
-for dotfile in $dotfiles; do
+dotfiles=(
+    ".config/lf"
+    ".config/.diricons"
+    ".config/nvim"
+    ".config/polybar"
+    ".config/zsh"
+    ".config/alacritty"
+    ".config/i3"
+    ".config/redshift.conf"
+    ".config/picom.conf"
+    ".config/ranger"
+    ".config/mpv"
+    ".tmux.conf"
+    ".zshenv"
+    ".Xresources"
+    ".urxvt"
+    ".wegorc"
+    ".gitconfig"
+    ".xinitrc"
+)
+
+for dotfile in "${dotfiles[@]}"; do
     make_home_symlink "$dotfile"
 done
 
+sudo ln -s "$HOME/.config/lf/lfrun" "/usr/local/bin" 2> /dev/null
+make_script_symlink

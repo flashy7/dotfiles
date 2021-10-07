@@ -3,7 +3,7 @@
 #   type pulse
 # }
 
-exec --no-startup-id feh --bg-scale /home/irakli/Pictures/nebula1.jpg
+exec --no-startup-id feh --bg-scale /home/irakli/Pictures/wp5.jpg
 
 set $mod Mod4
 
@@ -188,15 +188,15 @@ default_floating_border pixel 1
 gaps inner 0
 gaps outer 1
 
-workspace $ws1 gaps inner 0
-workspace $ws1 gaps outer 0
+# workspace $ws1 gaps inner 0
+# workspace $ws1 gaps outer 0
 
 smart_gaps on
-smart_borders on
+# smart_borders on
 
 exec --no-startup-id nm-applet
-exec --no-startup-id picom
-exec --no-startup-id element-desktop --hidden
+# exec --no-startup-id picom
+# exec --no-startup-id element-desktop --hidden
 exec --no-startup-id redshift
 exec --no-startup-id clipit
 exec --no-startup-id xclip
