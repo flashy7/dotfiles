@@ -17,7 +17,7 @@ set incsearch
 set clipboard+=unnamedplus
 set nohlsearch
 set noshowmode
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 set termguicolors
 set shortmess+=c
 set background=dark
@@ -26,11 +26,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
-Plug 'miyakogi/seiya.vim' " Enables transparency
+" Plug 'miyakogi/seiya.vim' " Enables transparency
 
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat' " vim-surround requires this to make . work
-"Plug 'fatih/vim-go'
 Plug 'mattn/vim-goimports'
 Plug 'tomlion/vim-solidity'
 
@@ -40,17 +37,23 @@ Plug 'nvim-lua/plenary.nvim' " Needed for gitsigns and telescope
 Plug 'lewis6991/gitsigns.nvim' " Like git gutter
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim' " Autocompletion based on LSP
-Plug 'onsails/lspkind-nvim' " Shows icons next to autocompletions
 Plug 'nvim-lua/popup.nvim' " Needed for telescope
 Plug 'nvim-telescope/telescope.nvim' " Fuzzy finder
 Plug 'norcalli/nvim-colorizer.lua' " Colorizes RGB color codes
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'glepnir/dashboard-nvim'
-
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'Mofiqul/vscode.nvim'
-"Plug 'folke/tokyonight.nvim'
+
+" These deal with autocompletions and diagnostics
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'mattn/efm-langserver'
+
 call plug#end()
 
 lua <<EOF
@@ -58,6 +61,7 @@ require('nvim-treesitter.configs').setup { highlight = { enable = true }}
 require('gitsigns').setup()
 require('telescope').setup()
 require('colorizer').setup()
+require('nvim-tree').setup()
 
 require('lualine').setup{
     options = {
@@ -66,39 +70,10 @@ require('lualine').setup{
     },
 }
 
-require('lspkind').init({
-    with_text = true,
-    preset = 'codicons',
-    symbol_map = {
-      Text = '',
-      Method = 'ƒ',
-      Function = 'ƒ',
-      Constructor = '',
-      Variable = '',
-      Class = '',
-      Interface = 'ﰮ',
-      Module = '',
-      Property = '',
-      Unit = '',
-      Value = '',
-      Enum = '了',
-      Keyword = '',
-      Snippet = '﬌',
-      Color = '',
-      File = '',
-      Folder = '',
-      Field = '',
-      EnumMember = '',
-      Constant = '',
-      Struct = ''
-    },
-})
-
 -- LSP Config setup
 local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
-    -- LSP Config setup
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -109,17 +84,79 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-
-    require 'completion'.on_attach()
 end
 
-local servers = { "pyright", "gopls", "bashls", "texlab" }
+require('lsp_signature').setup({
+    bind = true,
+    fix_pos = true,
+    handler_opts = { border = "none" },
+    always_trigger = true,
+    hint_enable = false,
+})
+
+local cmp = require('cmp')
+
+cmp.setup({
+    snippet = {
+      expand = function(args)
+         require('luasnip').lsp_expand(args.body)
+      end,
+    },
+    mapping = {
+        ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        }),
+    },
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+    }
+})
+
+local shellcheck = {
+    lintCommand = "shellcheck -f gcc -x -",
+    lintStdin = true,
+    lintFormats = {"%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m", "%f:%l:%c: %tote: %m"},
+}
+
+local shfmt = {
+    formatCommand = 'shfmt -ci -s -bn',
+    formatStdin = true,
+}
+
+vim.lsp.buf.formatting_sync({}, 1000)
+
+nvim_lsp["efm"].setup({
+    init_options = {
+        documentFormatting = true,
+        hover = false,
+        documentSymbol = false,
+        codeAction = false,
+        completion = false,
+    },
+    settings = {
+        rootMarkers = { "package.json", "pyproject.toml", "Cargo.toml", ".git/" },
+        languages = {
+            sh = { shellcheck, shfmt },
+        },
+    },
+})
+
+local servers = { "pyright", "gopls", "texlab", "bashls" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
+        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
         flags = {
             debounce_text_changes = 500,
-        }
+        },
     }
 end
 EOF
@@ -161,21 +198,6 @@ let g:NERDDefaultAlign = 'left'
 
 filetype plugin on
 
-" LSP Complete Configs
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Set completeopt to have a better completion experience
-let g:completion_trigger_on_delete = 1
-
-" Makes autoindent of auto-pairs plugin work
-let g:completion_confirm_key = ""
-imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
-\ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
-
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
-
 " Find files using Telescope command-line sugar.
 nnoremap ff <cmd>Telescope find_files<cr>
 nnoremap fg <cmd>Telescope live_grep<cr>
@@ -192,3 +214,6 @@ vnoremap p pgvy
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
+
+autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2

@@ -41,10 +41,9 @@ make_home_symlink() {
 
 make_script_symlink() {
     local -a scripts=("scripts/"*)
-    local wd=$(pwd)
 
     for script in "${scripts[@]}"; do
-        src="$wd/$script"
+        src="$PWD/$script"
         dest="$SCRIPT_DEST_DIR/${script/scripts\/}"
         echo "Installing $src into $dest"
         sudo ln -s "$src" "$dest"
