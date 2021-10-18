@@ -127,11 +127,9 @@ local shellcheck = {
 }
 
 local shfmt = {
-    formatCommand = 'shfmt -ci -s -bn',
+    formatCommand = 'shfmt -ci -s -sr -i 2',
     formatStdin = true,
 }
-
-vim.lsp.buf.formatting_sync({}, 1000)
 
 nvim_lsp["efm"].setup({
     init_options = {
@@ -144,7 +142,7 @@ nvim_lsp["efm"].setup({
     settings = {
         rootMarkers = { "package.json", "pyproject.toml", "Cargo.toml", ".git/" },
         languages = {
-            sh = { shellcheck, shfmt },
+            sh = { shellcheck },
         },
     },
 })

@@ -162,7 +162,8 @@ client.unfocused        $inactive-border $inactive-border $inactive-text-color $
 client.focused_inactive $inactive-border $inactive-border $inactive-text-color $inactive-border
 client.urgent           $urgent-bg-color $urgent-bg-color $text-color          $urgent-bg-color
 
-bindsym $mod+c exec google-chrome-stable --password-store=gnome
+# bindsym $mod+c exec google-chrome-stable --password-store=gnome
+bindsym $mod+c exec brave
 # bindsym $mod+c exec firefox
 bindsym $mod+z exec pavucontrol
 bindsym Print       exec flameshot full -p ~/Pictures
