@@ -53,29 +53,16 @@ make_script_symlink() {
 mkdir -p "$HOME/.cache/zsh"
 
 dotfiles=(
-    ".config/lf"
-    ".config/.diricons"
-    ".config/nvim"
-    ".config/polybar"
-    ".config/zsh"
-    ".config/alacritty"
-    ".config/i3"
-    ".config/redshift.conf"
-    ".config/picom.conf"
-    ".config/ranger"
-    ".config/mpv"
-    ".tmux.conf"
-    ".zshenv"
-    ".Xresources"
-    ".urxvt"
-    ".wegorc"
-    ".gitconfig"
-    ".xinitrc"
+   .bashrc
+   .zshenv
+   .gitconfig
+   .tmux.conf
+   .config/zsh
+   .config/nvim
 )
 
 for dotfile in "${dotfiles[@]}"; do
     make_home_symlink "$dotfile"
 done
 
-sudo ln -s "$HOME/.config/lf/lfrun" "/usr/local/bin" 2> /dev/null
-make_script_symlink
+# make_script_symlink

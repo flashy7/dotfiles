@@ -145,9 +145,10 @@ nvim_lsp["efm"].setup({
             sh = { shellcheck },
         },
     },
+    root_dir = function() return vim.loop.cwd() end,
 })
 
-local servers = { "pyright", "gopls", "texlab", "bashls" }
+local servers = { "pyright", "gopls", "texlab" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,

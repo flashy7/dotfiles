@@ -5,4 +5,3 @@ bindkey "^K" down-line-or-history
 bindkey "^J" up-line-or-history
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-
