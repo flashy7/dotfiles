@@ -59,6 +59,7 @@ dotfiles=(
    .tmux.conf
    .config/zsh
    .config/nvim
+   .config/lf
 )
 
 for dotfile in "${dotfiles[@]}"; do

@@ -21,6 +21,7 @@ set completeopt=menu,menuone,noselect
 set termguicolors
 set shortmess+=c
 set background=dark
+set mouse=a
 
 call plug#begin('~/.vim/plugged')
 
@@ -40,10 +41,10 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/popup.nvim' " Needed for telescope
 Plug 'nvim-telescope/telescope.nvim' " Fuzzy finder
 Plug 'norcalli/nvim-colorizer.lua' " Colorizes RGB color codes
-Plug 'kyazdani42/nvim-tree.lua'
+" Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'glepnir/dashboard-nvim'
-Plug 'kyazdani42/nvim-tree.lua'
+" Plug 'kyazdani42/nvim-tree.lua'
 Plug 'Mofiqul/vscode.nvim'
 
 " These deal with autocompletions and diagnostics
@@ -61,7 +62,7 @@ require('nvim-treesitter.configs').setup { highlight = { enable = true }}
 require('gitsigns').setup()
 require('telescope').setup()
 require('colorizer').setup()
-require('nvim-tree').setup()
+-- require('nvim-tree').setup()
 
 require('lualine').setup{
     options = {
