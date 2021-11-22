@@ -40,7 +40,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/popup.nvim' " Needed for telescope
 Plug 'nvim-telescope/telescope.nvim' " Fuzzy finder
-Plug 'norcalli/nvim-colorizer.lua' " Colorizes RGB color codes
+" Plug 'norcalli/nvim-colorizer.lua' " Colorizes RGB color codes
 " Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'glepnir/dashboard-nvim'
@@ -61,7 +61,7 @@ lua <<EOF
 require('nvim-treesitter.configs').setup { highlight = { enable = true }}
 require('gitsigns').setup()
 require('telescope').setup()
-require('colorizer').setup()
+-- require('colorizer').setup()
 -- require('nvim-tree').setup()
 
 require('lualine').setup{
@@ -214,6 +214,8 @@ vnoremap p pgvy
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
+
+let g:goimports_simplify = 1 " Enables -s flag for gofmt
 
 autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2
