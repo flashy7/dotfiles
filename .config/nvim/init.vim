@@ -182,8 +182,8 @@ let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
 map <F6> :setlocal spell! spelllang=en_us<CR>
 map <F7> :set nowrap!<CR>
 
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 inoremap jj <ESC>
 
 nnoremap <SPACE> <Nop>
