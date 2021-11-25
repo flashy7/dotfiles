@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# set -e
-
 SCRIPT_DEST_DIR="/usr/local/bin"
 
 # Usage: make_home_symlink path_to_file name_of_file_in_home_to_symlink_to
