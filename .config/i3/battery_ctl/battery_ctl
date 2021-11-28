@@ -1,8 +1,6 @@
-#!/bin/sh
+#!/bin/env sh
 
 set -e
-
-killall battery_ctl
 
 SLEEP_TIME=20
 WARN_CAP=30
@@ -37,12 +35,12 @@ while true; do
         read -r status capacity
 
         if [ "$status" = Discharging ]; then
-            if [ "$capacity" -le $CRIT_CAP ]; then
-                notify_crit
-                sleep 3
-                systemctl hibernate
-                exit 1
-            elif [ "$capacity" -le $WARN_CAP ]; then
+            # if [ "$capacity" -le $CRIT_CAP ]; then
+            #     notify_crit
+            #     sleep 3
+            #     systemctl hibernate
+            #     exit 1
+            if [ "$capacity" -le $WARN_CAP ]; then
                 notify_warn
             fi
         fi

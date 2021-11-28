@@ -53,38 +53,4 @@ source $HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
-alias ls='ls --color=auto --group-directories-first -h'
-alias cp='cp -iv'
-alias ln='ln -iv'
-alias mv='mv -iv'
-alias rm='rm -I --preserve-root'
-alias rmdir='rmdir -v'
-alias grep='grep --color=auto'
-alias mkdir='mkdir -vp'
-alias v='nvim'
-alias untar='tar -zxvf'
-alias ll='ls -la'
-alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias .....='cd ../../../../'
-alias se='sudoedit'
-
-# Butthead direct login
-alias butthead='ssh -t bajelidze@login.comsys.rwth-aachen.de ssh -t bajelidze@butthead.comsys.rwth-aachen.de'
-alias dcrm='docker rm $(docker ps -qa) -fv'
-alias dp='docker ps -a'
-alias dcrmi='docker images | grep none | awk "{ print $3; }" | xargs docker rmi'
-
-alias cdd='cd ~/Downloads'
-alias cdD='cd ~/Desktop'
-
-# Devour aliases
-alias mpv='devour mpv'
-alias zathura='devour zathura'
-alias sxiv='devour sxiv'
-alias evince='devour evince'
-alias wireshark='devour wireshark'
-
-alias streamlink='streamlink --twitch-low-latency --hls-live-edge=1 --player=mpv'
-alias lf='~/.config/lf/lfrun'
+source "$HOME/.config/zsh/.zsh_aliases"

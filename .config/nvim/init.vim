@@ -21,6 +21,7 @@ set completeopt=menu,menuone,noselect
 set termguicolors
 set shortmess+=c
 set background=dark
+set mouse=a
 
 call plug#begin('~/.vim/plugged')
 
@@ -60,7 +61,7 @@ lua <<EOF
 require('nvim-treesitter.configs').setup { highlight = { enable = true }}
 require('gitsigns').setup()
 require('telescope').setup()
-require('colorizer').setup()
+-- require('colorizer').setup()
 require('nvim-tree').setup()
 
 require('lualine').setup{
@@ -160,6 +161,7 @@ end
 EOF
 
 let g:vscode_style = "dark"
+
 colorscheme vscode
 
 let g:dashboard_default_executive = 'telescope'
