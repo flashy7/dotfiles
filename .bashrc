@@ -33,7 +33,11 @@ export PATH=$HOME/.local/bin:$HOME/Code/ccc/bin:$PATH:/home/ib/.linuxbrew/bin:/h
 export MANPATH=$PATH:/home/ib/.linuxbrew/share/man
 export INFOPATH=$INFOPATH:/home/ib/.linuxbrew/share/info
 
+# export C_INCLUDE_PATH=$C_INCLUDE_PATH:$HOME/.linuxbrew/include
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.linuxbrew/lib
+
 export EDITOR=nvim
+export BAT_THEME="Visual Studio Dark+"
 
 export HOMEBREW_PREFIX="/home/ib/.linuxbrew";
 export HOMEBREW_CELLAR="/home/ib/.linuxbrew/Cellar";

@@ -1,3 +1,5 @@
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
 set shell sh
 set drawbox
 set icons

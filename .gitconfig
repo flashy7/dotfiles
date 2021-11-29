@@ -2,10 +2,10 @@
     st = status
     df = diff
     co = checkout
-    ci = commit -S --verbose
+    ci = commit --verbose
 [user]
     name = bajelidze
     email = irakli.bajelidze@exasol.com
 	signingkey = 1D4A6EDE86457C3C
 [commit]
-	gpgsign = true
+	gpgsign = false
