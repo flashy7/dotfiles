@@ -8,7 +8,7 @@ nm-applet &
 ~/.config/i3/battery_ctl/battery_ctl &
 clipit -n &
 xclip &
-# picom --experimental-backends &
+picom &
 redshift &
 
 discord --start-minimized &

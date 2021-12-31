@@ -30,6 +30,11 @@ map gb cd /media/sdb
 map gr cd /media/sdb/Stuff/RWTH
 map gP cd /media/sdb/Stuff/Content/Lehr/New
 map gw cd /media/windows
+map gs cd ~/Pictures/Screenshots
+
+cmd dragon %dragon-drag-and-drop -a -x $fx
+
+map a dragon
 
 # open a dir or a file
 cmd open ${{
