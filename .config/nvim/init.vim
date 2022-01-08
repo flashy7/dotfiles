@@ -180,6 +180,7 @@ let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
 
 " Spell check toggle on F6
 map <F6> :setlocal spell! spelllang=en_us<CR>
+map <F5> :setlocal spell! spelllang=de<CR>
 map <F7> :set nowrap!<CR>
 
 nnoremap j gj

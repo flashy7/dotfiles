@@ -1,17 +1,19 @@
-#!/bin/env sh
+#!/bin/bash
 
 set -e
 
 SLEEP_TIME=20
-WARN_CAP=30
-CRIT_CAP=15
+WARN_CAP=40
+# CRIT_CAP=15
 
 NOTIFY_ICON_WARN="/usr/share/icons/Adwaita/scalable/status/battery-level-30-symbolic.svg"
 NOTIFY_ICON_CRIT="/usr/share/icons/Adwaita/scalable/status/battery-level-10-symbolic.svg"
 WAV_LOC=$HOME"/.config/i3/battery_ctl/notif_sound.wav"
 
 get_battery_stats() {
-    acpi -b | awk -F'[,:%]' '{print $2, $3}'
+    battery_info="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)"
+    percentage="$(sed -n '/percentage:/s/.*:\ *//p' <<< "$battery_info")"
+    echo "${percentage:0:-1}"
 }
 
 play_sound() {
