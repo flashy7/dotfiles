@@ -1,11 +1,45 @@
 #!/bin/bash
 
-declare PLAYER="mpv" channel_name="$1"
+declare _OPTION_PLAYER="mpv"
+declare _OPTION_QUALITY="best"
+declare _OPTION_CHAT=false
 
-[[ -z "$channel_name" ]] && \
-    echo "Missing an argument: channel name" >&2 && exit 1
+usage() {
+  echo "Usage:" >&2
+  echo "  sl [flags] CHANNEL" >&2
+}
 
-[[ "$2" == "-c" ]] && chatterino_7tv -c "$channel_name" & disown
+while getopts "chq::p::" o; do
+  case "${o}" in
+    c)
+      _OPTION_CHAT=true
+      ;;
+    q)
+      _OPTION_QUALITY="${OPTARG}"
+      ;;
+    p)
+      _OPTION_PLAYER="${OPTARG}"
+      ;;
+    h)
+      usage && exit
+      ;;
+    *)
+      usage && exit 1
+      ;;
+  esac
+done
 
-devour streamlink --twitch-low-latency --player="$PLAYER" \
-    --hls-live-edge=1 "twitch.tv/$channel_name" best
+shift $((OPTIND - 1))
+declare channel="$1"
+
+if [[ -z "$channel" ]]; then
+   echo "Missing an argument: channel" >&2
+   exit 1
+fi
+
+if [[ "$_OPTION_CHAT" == true ]]; then
+  chatterino_7tv -c "$channel" & disown
+fi
+
+devour streamlink --twitch-low-latency --player="$_OPTION_PLAYER" \
+    --hls-live-edge=1 "twitch.tv/$channel" "$_OPTION_QUALITY"

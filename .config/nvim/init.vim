@@ -2,7 +2,8 @@ syntax on
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-set expandtab
+" set expandtab
+set noexpandtab
 set smartindent
 set nu
 set ic
@@ -30,7 +31,8 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'miyakogi/seiya.vim' " Enables transparency
 
 Plug 'mattn/vim-goimports'
-Plug 'tomlion/vim-solidity'
+" Plug 'tomlion/vim-solidity'
+" Plug 'dense-analysis/ale'
 
 " Neovim v0.5 plugins
 Plug 'kyazdani42/nvim-web-devicons'
@@ -54,6 +56,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'mattn/efm-langserver'
+" Plug 'creativenull/efmls-configs-nvim'
 
 call plug#end()
 
@@ -148,7 +151,7 @@ nvim_lsp["efm"].setup({
     },
 })
 
-local servers = { "pyright", "gopls", "texlab", "bashls" }
+local servers = { "pyright", "gopls", "texlab", "bashls", "ccls" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -182,6 +185,9 @@ let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
 map <F6> :setlocal spell! spelllang=en_us<CR>
 map <F5> :setlocal spell! spelllang=de<CR>
 map <F7> :set nowrap!<CR>
+
+" Ale
+" let g:ale_linters = {'go': ['revive', 'staticcheck', 'govet']}
 
 nnoremap j gj
 nnoremap k gk

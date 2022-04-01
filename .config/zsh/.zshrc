@@ -1,7 +1,10 @@
 autoload -U colors && colors
 setopt promptsubst
 
-#source $HOME/.config/zsh/plugins/git.zsh
+ZSH_PLUGINS_PATH="$HOME/.config/zsh/plugins"
+
+# source $HOME/.config/zsh/plugins/git.zsh
+# source "$ZSH_PLUGINS_PATH/git-prompt/git-prompt.plugin.zsh"
 # source $HOME/.config/zsh/agnoster.zsh-theme
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
@@ -16,7 +19,11 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 PROMPT='%B%{$fg[green]%}%n%{$fg[green]%}@%{$fg[green]%}%M:%{$fg_bold[blue]%}%~%{$reset_color%}$ '
-#RPROMPT='$(git_prompt_info)'
+# RPROMPT='$(git_prompt_info)'
+# PROMPT='%{$fg[green]%}%n@%m:%{$fg_bold[blue]%}%2~ $(git_super_status)%{$reset_color%}%(!.#.$) '
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[red]%}‹"
+ZSH_THEME_GIT_PROMPT_SUFFIX="›%{$reset_color%}"
 
 # History cache
 HISTSIZE=3000
@@ -31,7 +38,8 @@ compinit
 _comp_options+=(globdots)		# Include hidden files
 
 source $HOME/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source $HOME/.config/zsh/plugins/zsh-asource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zshutosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #source $HOME/.config/zsh/plugins/command-not-found.plugin.zsh # Works on Ubuntu
 #source /usr/share/doc/pkgfile/command-not-found.zsh # Works on Arch. Needs package: pkgfile
@@ -47,7 +55,8 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-source $HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Disable directory underlining
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
