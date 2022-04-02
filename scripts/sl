@@ -39,7 +39,9 @@ fi
 
 if [[ "$_OPTION_CHAT" == true ]]; then
   chatterino_7tv -c "$channel" & disown
+  # shellcheck disable=SC2064
+  trap "kill $!" EXIT
 fi
 
 devour streamlink --twitch-low-latency --player="$_OPTION_PLAYER" \
-    --hls-live-edge=1 "twitch.tv/$channel" "$_OPTION_QUALITY"
+  --hls-live-edge=1 "twitch.tv/$channel" "$_OPTION_QUALITY"
