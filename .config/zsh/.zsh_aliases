@@ -20,3 +20,5 @@ alias dcrmi='docker images | grep none | awk "{ print $3; }" | xargs docker rmi'
 
 alias cdd='cd ~/Downloads'
 alias cdD='cd ~/Desktop'
+
+alias lf='~/.local/bin/lfrun'

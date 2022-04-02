@@ -17,3 +17,4 @@ export INFOPATH=$INFOPATH:/home/ib/.linuxbrew/share/info
 
 export EDITOR=nvim
 export BAT_THEME="Visual Studio Dark+"
+. "$HOME/.cargo/env"

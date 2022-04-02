@@ -2,7 +2,8 @@ syntax on
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
+" set expandtab
 set smartindent
 set nu
 set ic
@@ -30,7 +31,7 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'miyakogi/seiya.vim' " Enables transparency
 
 Plug 'mattn/vim-goimports'
-Plug 'tomlion/vim-solidity'
+" Plug 'tomlion/vim-solidity'
 
 " Neovim v0.5 plugins
 Plug 'kyazdani42/nvim-web-devicons'
@@ -54,6 +55,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'mattn/efm-langserver'
+Plug 'creativenull/efmls-configs-nvim'
 
 call plug#end()
 
@@ -132,6 +134,13 @@ local shfmt = {
     formatStdin = true,
 }
 
+-- local golint = {
+-- lintCommand = 'revive -formatter unix',
+--  lintStdin = true,
+--   lintFormats = { '%.%#:%l:%c: %m' },
+-- rootMarkers = {},
+-- }
+
 nvim_lsp["efm"].setup({
     init_options = {
         documentFormatting = true,
@@ -144,6 +153,7 @@ nvim_lsp["efm"].setup({
         rootMarkers = { "package.json", "pyproject.toml", "Cargo.toml", ".git/" },
         languages = {
             sh = { shellcheck },
+            --go = { golint },
         },
     },
     root_dir = function() return vim.loop.cwd() end,
@@ -218,4 +228,5 @@ inoremap <silent> <C-S>         <C-O>:update<CR>
 let g:goimports_simplify = 1 " Enables -s flag for gofmt
 
 autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  autocmd BufNewFile,BufRead *.pysrc set syntax=python

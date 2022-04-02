@@ -29,7 +29,8 @@ unset rc
 
 export ZDOTDIR="$HOME/.config/zsh"
 
-export PATH=$HOME/.local/bin:$HOME/Code/ccc/bin:$PATH:/home/ib/.linuxbrew/bin:/home/ib/.linuxbrew/sbin
+# export PATH=$HOME/.local/bin:$HOME/Code/ccc-master/bin:$HOME/go/bin/:$PATH:/home/ib/.linuxbrew/bin:/home/ib/.linuxbrew/sbin
+export PATH=$HOME/.local/bin:$HOME/Code/ccc/bin:$HOME/go/bin/:$PATH:/home/ib/.linuxbrew/bin:/home/ib/.linuxbrew/sbin
 export MANPATH=$PATH:/home/ib/.linuxbrew/share/man
 export INFOPATH=$INFOPATH:/home/ib/.linuxbrew/share/info
 
@@ -72,3 +73,4 @@ if [ -f '/home/ib/.local/google-cloud-sdk/path.bash.inc' ]; then . '/home/ib/.lo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/ib/.local/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ib/.local/google-cloud-sdk/completion.bash.inc'; fi
+. "$HOME/.cargo/env"
