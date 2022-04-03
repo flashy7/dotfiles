@@ -27,12 +27,9 @@ set mouse=a
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
 " Plug 'miyakogi/seiya.vim' " Enables transparency
 
 Plug 'mattn/vim-goimports'
-" Plug 'tomlion/vim-solidity'
-" Plug 'dense-analysis/ale'
 
 " Neovim v0.5 plugins
 Plug 'kyazdani42/nvim-web-devicons'
@@ -48,6 +45,7 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'glepnir/dashboard-nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'Mofiqul/vscode.nvim'
+Plug 'windwp/nvim-autopairs'
 
 " These deal with autocompletions and diagnostics
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -64,7 +62,7 @@ lua <<EOF
 require('nvim-treesitter.configs').setup { highlight = { enable = true }}
 require('gitsigns').setup()
 require('telescope').setup()
--- require('colorizer').setup()
+require('nvim-autopairs').setup{}
 require('nvim-tree').setup()
 
 require('lualine').setup{
@@ -99,6 +97,7 @@ require('lsp_signature').setup({
 })
 
 local cmp = require('cmp')
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 cmp.setup({
     snippet = {
@@ -123,6 +122,7 @@ cmp.setup({
         { name = 'buffer' },
     }
 })
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
 local shellcheck = {
     lintCommand = "shellcheck -f gcc -x -",
