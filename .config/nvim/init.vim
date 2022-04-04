@@ -27,11 +27,9 @@ set mouse=a
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
 " Plug 'miyakogi/seiya.vim' " Enables transparency
 
 Plug 'mattn/vim-goimports'
-" Plug 'tomlion/vim-solidity'
 
 " Neovim v0.5 plugins
 Plug 'kyazdani42/nvim-web-devicons'
@@ -41,12 +39,10 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/popup.nvim' " Needed for telescope
 Plug 'nvim-telescope/telescope.nvim' " Fuzzy finder
-" Plug 'norcalli/nvim-colorizer.lua' " Colorizes RGB color codes
-" Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'glepnir/dashboard-nvim'
-" Plug 'kyazdani42/nvim-tree.lua'
 Plug 'Mofiqul/vscode.nvim'
+Plug 'windwp/nvim-autopairs'
 
 " These deal with autocompletions and diagnostics
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -63,8 +59,7 @@ lua <<EOF
 require('nvim-treesitter.configs').setup { highlight = { enable = true }}
 require('gitsigns').setup()
 require('telescope').setup()
--- require('colorizer').setup()
--- require('nvim-tree').setup()
+require('nvim-autopairs').setup{}
 
 require('lualine').setup{
     options = {
