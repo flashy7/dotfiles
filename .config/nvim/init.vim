@@ -46,6 +46,8 @@ Plug 'glepnir/dashboard-nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'windwp/nvim-autopairs'
+Plug 'petertriho/nvim-scrollbar'
+Plug 'andweeb/presence.nvim'
 
 " These deal with autocompletions and diagnostics
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -64,6 +66,20 @@ require('gitsigns').setup()
 require('telescope').setup()
 require('nvim-autopairs').setup{}
 require('nvim-tree').setup()
+require("presence"):setup({
+	auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
+    neovim_image_text   = "Neovim",					  -- Text displayed when hovered over the Neovim image
+    main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
+    log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
+    debounce_timeout    = 10,                          -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
+    enable_line_number  = false,                      -- Displays the current line number instead of the current project
+    buttons             = false,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+})
+require("scrollbar").setup({
+	handle = {
+        color = "#343434",
+    },
+})
 
 require('lualine').setup{
     options = {
