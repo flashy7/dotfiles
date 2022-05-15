@@ -1,6 +1,6 @@
 #!/bin/sh
 
-feh --bg-scale /home/irakli/Pictures/tree.jpg
+feh --bg-scale ~/Pictures/tree.jpg
 
 dwmblocks &
 dunst &

@@ -38,11 +38,7 @@ compinit
 _comp_options+=(globdots)		# Include hidden files
 
 source $HOME/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-# source $HOME/.config/zsh/plugins/zsh-asource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zshutosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-#source $HOME/.config/zsh/plugins/command-not-found.plugin.zsh # Works on Ubuntu
-#source /usr/share/doc/pkgfile/command-not-found.zsh # Works on Arch. Needs package: pkgfile
+source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Edit line in vim with ctrl-r:
 autoload edit-command-line; zle -N edit-command-line
@@ -55,8 +51,8 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# source $HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # Disable directory underlining
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none

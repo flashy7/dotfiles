@@ -1,13 +1,11 @@
 export ZDOTDIR="$HOME/.config/zsh"
 
-# LF_ICONS=$(sed ~/.config/.diricons \
-#             -e '/^[ \t]*#/d'       \
-#             -e '/^[ \t]*$/d'       \
-#             -e 's/[ \t]\+/=/g'     \
-#             -e 's/$/ /')
-# LF_ICONS=${LF_ICONS//$'\n'/:}
-# export LF_ICONS
+if [[ -f ~/.config/.diricons ]]; then
+	LF_ICONS="$(tr '\n' ':' <~/.config/.diricons)"
+	export LF_ICONS
+fi
 
-export PATH=$PATH:$HOME/.npm-packages/bin:$HOME/Code/ccc/bin
+export PATH=$PATH:$HOME/.npm-packages/bin:$HOME/Code/ccc/bin:$HOME/.local/bin
 
-# export EDITOR=nvim
+export GTK_THEME=Adwaita:dark
+export EDITOR=nvim

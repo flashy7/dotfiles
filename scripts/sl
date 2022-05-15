@@ -38,7 +38,7 @@ if [[ -z "$channel" ]]; then
 fi
 
 if [[ "$_OPTION_CHAT" == true ]]; then
-  chatterino_7tv -c "$channel" & disown
+  chatterino -c "$channel" & disown
   # shellcheck disable=SC2064
   trap "kill $!" EXIT
 fi

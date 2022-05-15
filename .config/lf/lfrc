@@ -8,9 +8,6 @@ set ifs "\n"
 set scrolloff 10
 set period 1
 
-# make sure trash folder exists
-%mkdir -p ~/Trash
-
 # use enter for shell commands
 # map <enter> open
 
@@ -32,7 +29,7 @@ map gP cd /media/sdb/Stuff/Content/Lehr/New
 map gw cd /media/windows
 map gs cd ~/Pictures/Screenshots
 
-cmd dragon %dragon-drag-and-drop -a -x $fx
+cmd dragon %dragon-drop -a -x $fx
 
 map a dragon
 
