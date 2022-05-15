@@ -18,6 +18,7 @@ alias se='sudoedit'
 alias j='jobs'
 alias t='tmux'
 alias dragon='dragon-drag-and-drop -x'
+alias cal='cal -m'
 
 # Butthead direct login
 alias butthead='ssh -t bajelidze@login.comsys.rwth-aachen.de ssh -t bajelidze@butthead.comsys.rwth-aachen.de'

@@ -28,6 +28,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdcommenter'
 " Plug 'miyakogi/seiya.vim' " Enables transparency
+Plug 'rhysd/vim-clang-format'
 
 Plug 'mattn/vim-goimports'
 
@@ -167,7 +168,7 @@ nvim_lsp["efm"].setup({
     },
 })
 
-local servers = { "pyright", "gopls", "texlab", "bashls", "ccls" }
+local servers = { "pyright", "gopls", "texlab", "bashls", "clangd" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -248,4 +249,5 @@ nnoremap <C-K> :Gitsigns toggle_current_line_blame<CR>
 nnoremap U :Gitsigns reset_hunk<CR>
 
 autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.cpp :ClangFormat
 autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2
