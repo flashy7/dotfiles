@@ -168,7 +168,7 @@ nvim_lsp["efm"].setup({
     },
 })
 
-local servers = { "pyright", "gopls", "texlab", "bashls", "clangd" }
+local servers = { "pyright", "gopls", "clangd" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
