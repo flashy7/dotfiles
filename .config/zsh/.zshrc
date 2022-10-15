@@ -57,5 +57,6 @@ ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 source "$HOME/.config/zsh/.zsh_aliases"
+source "$HOME/.config/zsh/.zsh_binds"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

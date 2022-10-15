@@ -59,6 +59,9 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'mattn/efm-langserver'
 " Plug 'creativenull/efmls-configs-nvim'
 
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
+
 call plug#end()
 
 lua <<EOF
@@ -140,6 +143,11 @@ cmp.setup({
     }
 })
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+
+require("trouble").setup{
+    auto_open = true,
+    auto_close = true,
+}
 
 local shellcheck = {
     lintCommand = "shellcheck -f gcc -x -",
