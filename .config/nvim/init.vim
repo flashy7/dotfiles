@@ -30,6 +30,7 @@ Plug 'preservim/nerdcommenter'
 " Plug 'miyakogi/seiya.vim' " Enables transparency
 
 Plug 'mattn/vim-goimports'
+Plug 'rhysd/vim-clang-format'
 
 " Neovim v0.5 plugins
 Plug 'kyazdani42/nvim-web-devicons'
@@ -43,6 +44,7 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'glepnir/dashboard-nvim'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'windwp/nvim-autopairs'
+Plug 'petertriho/nvim-scrollbar'
 
 " These deal with autocompletions and diagnostics
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -61,6 +63,11 @@ require('gitsigns').setup()
 require('telescope').setup()
 require('nvim-autopairs').setup{}
 
+require("scrollbar").setup({
+	handle = {
+		color = "#343434",
+	},
+})
 require('lualine').setup{
     options = {
         theme = 'vscode',
@@ -124,10 +131,14 @@ local shellcheck = {
     lintFormats = {"%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m", "%f:%l:%c: %tote: %m"},
 }
 
-local shfmt = {
-    formatCommand = 'shfmt -ci -s -sr -i 2',
-    formatStdin = true,
-}
+-- local mypy = {
+--     lintCommand = "mypy --show-column-numbers --ignore-missing-imports --show-error-codes",
+--     lintFormats = {
+--         "%f:%l:%c: %trror: %m",
+--         "%f:%l:%c: %tarning: %m",
+--         "%f:%l:%c: %tote: %m",
+--     },
+-- }
 
 -- local golint = {
 -- lintCommand = 'revive -formatter unix',
@@ -148,17 +159,20 @@ nvim_lsp["efm"].setup({
         rootMarkers = { "package.json", "pyproject.toml", "Cargo.toml", ".git/" },
         languages = {
             sh = { shellcheck },
-            --go = { golint },
+			py = { mypy },
         },
     },
     root_dir = function() return vim.loop.cwd() end,
 })
 
-local servers = { "pyright", "gopls", "texlab" }
+local servers = { "gopls", "texlab", "pyright", "clangd" }
+cmp_nvim_lsp = require('cmp_nvim_lsp')
 for _, lsp in ipairs(servers) do
+	capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+	capabilities.offsetEncoding = "utf-8"
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
-        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+        capabilities = capabilities,
         flags = {
             debounce_text_changes = 500,
         },
@@ -232,5 +246,5 @@ nnoremap U :Gitsigns reset_hunk<CR>
 let g:goimports_simplify = 1 " Enables -s flag for gofmt
 
 autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-  autocmd BufNewFile,BufRead *.pysrc set syntax=python
+autocmd FileType sh,tex,tmpl setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd BufNewFile,BufRead *.pysrc set syntax=python

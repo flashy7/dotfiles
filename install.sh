@@ -48,6 +48,12 @@ make_script_symlink() {
     done
 }
 
+install_gitmux() {
+	which gitmux && return
+
+	go get -u github.com/arl/gitmux
+}
+
 mkdir -p "$HOME/.cache/zsh"
 
 dotfiles=(
@@ -57,11 +63,15 @@ dotfiles=(
    .tmux.conf
    .config/zsh
    .config/nvim
+   .config/mpv
    .config/lf
+   .config/.gitmux.conf
+   .config/alacritty
 )
 
 for dotfile in "${dotfiles[@]}"; do
     make_home_symlink "$dotfile"
 done
 
+install_gitmux
 # make_script_symlink
