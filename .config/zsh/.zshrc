@@ -37,8 +37,8 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files
 
-source $HOME/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
 # Edit line in vim with ctrl-r:
 autoload edit-command-line; zle -N edit-command-line

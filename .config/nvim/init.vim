@@ -23,6 +23,7 @@ set termguicolors
 set shortmess+=c
 set background=dark
 set mouse=a
+set list
 
 call plug#begin('~/.vim/plugged')
 
@@ -31,6 +32,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'rhysd/vim-clang-format'
 
 Plug 'mattn/vim-goimports'
+Plug 'simrat39/rust-tools.nvim'
 
 " Neovim v0.5 plugins
 Plug 'kyazdani42/nvim-web-devicons'
@@ -60,7 +62,7 @@ Plug 'mattn/efm-langserver'
 " Plug 'creativenull/efmls-configs-nvim'
 
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'folke/trouble.nvim'
+" Plug 'folke/trouble.nvim'
 
 call plug#end()
 
@@ -95,17 +97,14 @@ require('lualine').setup{
 -- LSP Config setup
 local nvim_lsp = require('lspconfig')
 
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+
 local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-    local opts = { noremap=true, silent=true }
-
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 end
 
 require('lsp_signature').setup({
@@ -144,10 +143,10 @@ cmp.setup({
 })
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
-require("trouble").setup{
-    auto_open = true,
-    auto_close = true,
-}
+-- require("trouble").setup{
+--     auto_open = true,
+--     auto_close = true,
+-- }
 
 local shellcheck = {
     lintCommand = "shellcheck -f gcc -x -",
@@ -176,16 +175,33 @@ nvim_lsp["efm"].setup({
     },
 })
 
-local servers = { "pyright", "gopls", "clangd" }
+nvim_lsp["eslint"].setup({
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end
+})
+
+local servers = { "pyright", "gopls", "clangd", "tsserver" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
-        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+        capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
         flags = {
             debounce_text_changes = 500,
         },
     }
 end
+
+local rt = require("rust-tools")
+
+rt.setup({
+  server = {
+	on_attach = on_attach,
+  },
+})
 EOF
 
 let g:vscode_style = "dark"
@@ -259,3 +275,7 @@ nnoremap U :Gitsigns reset_hunk<CR>
 autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.cpp :ClangFormat
 autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2
+
+autocmd FileType vue setlocal tabstop=2 expandtab shiftwidth=2
+autocmd FileType typescript setlocal tabstop=2 expandtab shiftwidth=2
+autocmd FileType javascript setlocal tabstop=2 expandtab shiftwidth=2
