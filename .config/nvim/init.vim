@@ -159,6 +159,10 @@ local shfmt = {
     formatStdin = true,
 }
 
+nvim_lsp.volar.setup{
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+}
+
 nvim_lsp["efm"].setup({
     init_options = {
         documentFormatting = true,

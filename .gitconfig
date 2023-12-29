@@ -3,6 +3,7 @@
     df = diff
     co = checkout
     ci = commit --verbose
+    pl = pull
 [user]
     name = bajelidze
     email = irakli.bajelidze@exasol.com
