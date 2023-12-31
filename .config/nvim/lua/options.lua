@@ -6,6 +6,9 @@ opt.swapfile = false
 opt.clipboard = 'unnamedplus' -- Copy-paste to the system clipboard
 opt.shortmess:append('sI')
 opt.mouse = 'a'
+opt.lazyredraw = true -- Don't redraw during macros
+opt.undodir = vim.fn.stdpath('cache') .. '/undodir'
+opt.undofile = true
 
 -- UI
 opt.number = true
@@ -24,8 +27,6 @@ opt.smartindent = true
 opt.expandtab = true
 
 -- Performance
-opt.history = 100
-opt.lazyredraw = true -- Don't redraw during macros
 
 -- Disable builtin plugins
 local disabled_built_ins = {
