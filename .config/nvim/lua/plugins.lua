@@ -33,6 +33,7 @@ require('lazy').setup({
                     'efm',
                     'eslint',
                     'volar',
+                    'lua_ls',
                 }
 
                 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -44,7 +45,11 @@ require('lazy').setup({
                         local shellcheck = {
                             lintCommand = 'shellcheck -f gcc -x -',
                             lintStdin = true,
-                            lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
+                            lintFormats = {
+                                '%f:%l:%c: %trror: %m',
+                                '%f:%l:%c: %tarning: %m',
+                                '%f:%l:%c: %tote: %m',
+                            },
                         }
 
                         opts.init_options = {
@@ -56,7 +61,10 @@ require('lazy').setup({
                         }
                         opts.settings = {
                             rootMarkers = {
-                                'package.json', 'pyproject.toml', 'Cargo.toml', '.git/',
+                                'package.json',
+                                'pyproject.toml',
+                                'Cargo.toml',
+                                '.git/',
                             },
                             languages = { sh = { shellcheck } },
                         }
@@ -72,6 +80,26 @@ require('lazy').setup({
                             'typescript', 'javascript', 'javascriptreact',
                             'typescriptreact', 'vue', 'json',
                         }
+                    elseif server == 'lua_ls' then
+                        opts.on_init = function(client)
+                            local path = client.workspace_folders[1].name
+                            if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+                                return true
+                            end
+
+                            client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+                                Lua = {
+                                    runtime = { version = 'LuaJIT' },
+                                    workspace = {
+                                        checkThirdParty = false,
+                                        library = { vim.env.VIMRUNTIME },
+                                    },
+                                },
+                            })
+
+                            client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+                            return true
+                        end
                     end
 
                     lspconfig[server].setup(opts)
