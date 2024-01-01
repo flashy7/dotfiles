@@ -12,6 +12,22 @@ vim.g.mapleader = ' '
 map('i', 'jj', '<ESC>')
 map('v', 'p', 'pgvy') -- Stop yanking when pasting in visual mode
 
+-- General: Move lines in visual mode
+map('v', 'J', ":m '>+1<CR>gv=gv")
+map('v', 'K', ":m '<-2<CR>gv=gv")
+
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+
+map('i', '<C-c>', '<Esc>')
+
+map('n', 'Q', '<nop>')
+
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map("n", "<leader>x", "<cmd>!chmod +x %<CR>")
+
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
