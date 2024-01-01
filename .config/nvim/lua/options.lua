@@ -16,7 +16,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.hlsearch = false
 opt.wrap = false
-opt.completeopt = menu,menuone,noselect
+opt.completeopt = 'menu,menuone,noselect'
 opt.list = true
 
 -- Tabs and indentation
@@ -74,9 +74,9 @@ vim.api.nvim_create_autocmd('FileType', {
         'tsx',
     },
     callback = function()
-        opt.tabstop = 2
-        opt.softtabstop = 2
-        opt.shiftwidth = 2
+        opt_local.tabstop = 2
+        opt_local.softtabstop = 2
+        opt_local.shiftwidth = 2
     end,
 })
 
@@ -85,6 +85,6 @@ vim.api.nvim_create_autocmd('FileType', {
         'go',
     },
     callback = function()
-        opt.expandtab = false
+        opt_local.expandtab = false
     end,
 })
