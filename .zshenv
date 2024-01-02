@@ -22,7 +22,7 @@ fi
 export EDITOR=nvim
 export BAT_THEME="Visual Studio Dark+"
 export ZDOTDIR="$HOME/.config/zsh"
-export BROWSER=google-chrome
+export BROWSER=firefox
 export GOROOT=~/.local/go
 
 export HOMEBREW_PREFIX="/home/ib/.linuxbrew";
@@ -30,10 +30,8 @@ export HOMEBREW_CELLAR="/home/ib/.linuxbrew/Cellar";
 export HOMEBREW_REPOSITORY="/home/ib/.linuxbrew/Homebrew";
 export HOMEBREW_SHELLENV_PREFIX="/home/ib/.linuxbrew";
 
-export PATH=$HOME/.local/go/bin:$HOME/go/bin:$HOME/.local/share/flatpak/exports/bin:$HOME/.local/bin:$HOME/Code/ccc/bin:$PATH:/home/ib/.linuxbrew/bin:/home/ib/.linuxbrew/sbin
+export PATH=$HOME/.local/go/bin:$HOME/go/bin:$HOME/.local/share/flatpak/exports/bin:$HOME/.local/bin:$HOME/Code/ccc/main/bin:$HOME/.local/bin:$PATH:/home/ib/.linuxbrew/bin:/home/ib/.linuxbrew/sbin
 export MANPATH=$MANPATH:/home/ib/.linuxbrew/share/man:$HOME/.local/share/man
 export INFOPATH=$INFOPATH:/home/ib/.linuxbrew/share/info
 
 export TEXINPUTS=$HOME/.local/share/texmf:
-
-source "$HOME/.cargo/env"

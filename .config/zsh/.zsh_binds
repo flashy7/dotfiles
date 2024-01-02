@@ -5,3 +5,6 @@ bindkey "^K" down-line-or-history
 bindkey "^J" up-line-or-history
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+bindkey "^F" fzf-file-open
+bindkey "^P" history-beginning-search-backward
+bindkey "^N" history-beginning-search-forward

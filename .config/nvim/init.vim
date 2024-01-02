@@ -23,6 +23,8 @@ set termguicolors
 set shortmess+=c
 set background=dark
 set mouse=a
+set list
+:set colorcolumn=100
 
 call plug#begin('~/.vim/plugged')
 
@@ -165,11 +167,13 @@ nvim_lsp["efm"].setup({
     root_dir = function() return vim.loop.cwd() end,
 })
 
-local servers = { "gopls", "texlab", "pyright", "clangd" }
 cmp_nvim_lsp = require('cmp_nvim_lsp')
+
+capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.offsetEncoding = "utf-8"
+
+local servers = { "gopls", "texlab", "pyright", "clangd" }
 for _, lsp in ipairs(servers) do
-	capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-	capabilities.offsetEncoding = "utf-8"
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
         capabilities = capabilities,
@@ -178,6 +182,32 @@ for _, lsp in ipairs(servers) do
         },
     }
 end
+
+nvim_lsp.pylsp.setup{
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = {
+					maxLineLength = 100,
+				}
+			}
+		}
+	}
+}
+
+local configs = require('lspconfig/configs')
+configs.golangcilsp = {
+	default_config = {
+		cmd = {'golangci-lint-langserver'},
+		root_dir = nvim_lsp.util.root_pattern('.git', 'go.mod'),
+		init_options = {
+				command = { "golangci-lint", "run", "-c", "~/.config/nvim/.golangci.yaml", "--out-format", "json", "--issues-exit-code=1" }
+		}
+	};
+}
+nvim_lsp.golangci_lint_ls.setup {
+	filetypes = {'go','gomod'}
+}
 EOF
 
 let g:vscode_style = "dark"

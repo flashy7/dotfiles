@@ -6,6 +6,9 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
+fzf-file-open() { fzf --print0  }
+zle -N fzf-file-open
+
 PROMPT='%B%{$fg[green]%}%n%{$fg[green]%}@%{$fg[green]%}%M:%{$fg_bold[blue]%}%~%{$reset_color%}$ '
 
 # History cache
@@ -20,7 +23,7 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files
 
-source $HOME/.config/zsh/plugins/zsh-vi-mode.zsh
+# source $HOME/.config/zsh/plugins/zsh-vi-mode.zsh
 source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Edit line in vim with ctrl-r:
@@ -35,6 +38,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 source $HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.config/zsh/plugins/fzf.zsh
 
 # Disable directory underlining
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
@@ -42,3 +46,9 @@ ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 source $HOME/.config/zsh/.zsh_aliases
+source $HOME/.config/zsh/.zsh_binds
+
+source $HOME/.ccc/saas_helpers
+
+export FZF_DEFAULT_OPTS='--layout reverse --height 40%'
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"

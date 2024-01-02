@@ -21,6 +21,6 @@ alias dcrmi='docker images | grep none | awk "{ print $3; }" | xargs docker rmi'
 alias cdd='cd ~/Downloads'
 alias cdD='cd ~/Desktop'
 
-alias lf='~/.local/bin/lfrun'
 alias zathura='devour zathura'
 alias evince='devour evince'
+alias slack='flatpak run --filesystem=home:ro com.slack.Slack'
