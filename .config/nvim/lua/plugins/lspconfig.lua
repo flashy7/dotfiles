@@ -41,14 +41,16 @@ local function config()
                 },
             }
 
-            local goimports = {
-                formatCommand = 'goimports',
+            local black = {
+                formatCanRange = true,
+                formatCommand =
+                "black --no-color -q $(echo ${--useless:rowStart} ${--useless:rowEnd} | xargs -n4 -r sh -c 'echo --line-ranges=$(($1+1))-$(($3+1))') -",
                 formatStdin = true,
             }
 
             local languages = {
                 sh = { shellcheck },
-                go = { goimports },
+                python = { black },
             }
 
             opts.init_options = {
@@ -105,10 +107,6 @@ local function config()
                 gopls = {
                     gofumpt = true,
                 },
-            }
-        elseif server == 'golangci_lint_ls' then
-            opts.init_options = {
-                command = { 'golangci-lint', 'run', '--out-format', 'json' },
             }
         end
 

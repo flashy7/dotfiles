@@ -22,7 +22,10 @@ require('lazy').setup({
 
         {
             'neovim/nvim-lspconfig',
-            dependencies = { 'hrsh7th/cmp-nvim-lsp' },
+            dependencies = {
+                'hrsh7th/cmp-nvim-lsp',
+                'williamboman/mason-lspconfig.nvim',
+            },
             config = require('plugins/lspconfig'),
         },
 
@@ -40,6 +43,7 @@ require('lazy').setup({
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-path' },
         { 'hrsh7th/cmp-cmdline' },
+        { 'hrsh7th/cmp-nvim-lsp-signature-help' },
 
         {
             'hrsh7th/nvim-cmp',
@@ -49,8 +53,25 @@ require('lazy').setup({
                 'hrsh7th/cmp-buffer',
                 'hrsh7th/cmp-path',
                 'hrsh7th/cmp-cmdline',
+                'hrsh7th/cmp-nvim-lsp-signature-help',
             },
             config = require('plugins/nvim-cmp'),
+        },
+
+        {
+            'williamboman/mason.nvim',
+            config = true,
+        },
+
+        {
+            'williamboman/mason-lspconfig.nvim',
+            dependencies = { 'williamboman/mason.nvim' },
+            config = true,
+            opts = {
+                ensure_installed = {
+                    'clangd', 'efm', 'lua_ls', 'pylsp', 'gopls',
+                }
+            },
         },
 
         {
@@ -130,5 +151,7 @@ require('lazy').setup({
                 handle = { color = '#343434' },
             },
         },
+
+        { 'mattn/vim-goimports' },
     },
 })

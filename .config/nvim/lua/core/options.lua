@@ -16,7 +16,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.hlsearch = false
 opt.wrap = false
-opt.completeopt = 'menu,menuone,noselect'
+opt.completeopt = 'menu,menuone,noselect,preview'
 opt.list = true
 
 -- Tabs and indentation
