@@ -152,6 +152,6 @@ require('lazy').setup({
             },
         },
 
-        -- { 'mattn/vim-goimports' },
+        { 'mattn/vim-goimports' },
     },
 })
