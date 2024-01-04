@@ -18,6 +18,7 @@ opt.hlsearch = false
 opt.wrap = false
 opt.completeopt = 'menu,menuone,noselect,preview'
 opt.list = true
+opt.showmode = false
 
 -- Tabs and indentation
 opt.tabstop = 4
