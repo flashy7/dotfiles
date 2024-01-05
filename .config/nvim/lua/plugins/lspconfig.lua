@@ -10,6 +10,8 @@ local function config()
         'gopls',
         'golangci_lint_ls',
         'pylsp',
+        'yamlls',
+        'jsonls',
     }
 
     -- Format on save

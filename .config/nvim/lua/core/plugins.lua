@@ -69,7 +69,9 @@ require('lazy').setup({
             config = true,
             opts = {
                 ensure_installed = {
-                    'clangd', 'efm', 'lua_ls', 'pylsp', 'gopls',
+                    'clangd', 'efm', 'lua_ls',
+                    'pylsp', 'gopls', 'yamlls',
+                    'jsonls',
                 }
             },
         },

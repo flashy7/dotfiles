@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+lf
+exit 0
+
 cleanup() {
     exec 3>&-
 	rm "$FIFO_UEBERZUG"
