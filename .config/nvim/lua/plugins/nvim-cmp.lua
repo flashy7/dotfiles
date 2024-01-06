@@ -25,6 +25,7 @@ local function config()
             { name = 'luasnip' },
             { name = 'buffer' },
             { name = 'nvim_lsp_signature_help' },
+            { name = 'neorg' },
         }),
     })
 

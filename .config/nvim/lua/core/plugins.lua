@@ -108,7 +108,7 @@ require('lazy').setup({
                     'git_config', 'git_rebase', 'gitcommit', 'gitignore',
                     'gitattributes', 'gomod', 'gosum', 'haskell', 'jq',
                     'latex', 'make', 'markdown', 'markdown_inline', 'ninja',
-                    'sql', 'ssh_config', 'terraform',
+                    'sql', 'ssh_config', 'terraform', 'norg',
                 },
                 sync_install = false,
                 highlight = { enable = true },
@@ -155,5 +155,43 @@ require('lazy').setup({
         },
 
         { 'mattn/vim-goimports' },
+
+        {
+            'nvim-neorg/neorg',
+            build = ':Neorg sync-parsers',
+            dependencies = { 'nvim-lua/plenary.nvim' },
+            opts = {
+                load = {
+                    ['core.defaults'] = {},
+                    ['core.concealer'] = {
+                        config = {
+                            icons = {
+                                todo = {
+                                    done = {
+                                        icon = "✓",
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    ['core.dirman'] = {
+                        config = {
+                            workspaces = {
+                                notes = '~/Notes',
+                            },
+                            default_workspace = 'notes',
+                        },
+                    },
+                    ['core.promo'] = {},
+                    ['core.itero'] = {},
+                    ['core.completion'] = {
+                        config = {
+                            engine = 'nvim-cmp',
+                        },
+                    },
+                    ['core.integrations.nvim-cmp'] = {},
+                },
+            },
+        },
     },
 })

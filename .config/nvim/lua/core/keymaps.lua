@@ -7,6 +7,7 @@ local function map(mode, lhs, rhs, opts)
 end
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
 
 -- General
 map('i', 'jj', '<ESC>')
