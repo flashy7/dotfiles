@@ -12,6 +12,10 @@ local function config()
         'pylsp',
     }
 
+    local servers_autofmt = {
+        'gopls',
+    }
+
     -- Format on save
     local function create_format_autocmd(bufnr)
         vim.api.nvim_create_autocmd('BufWritePre', {
@@ -24,9 +28,6 @@ local function config()
 
     for _, server in ipairs(servers) do
         local opts = {
-            on_attach = function(_, bufnr)
-                create_format_autocmd(bufnr)
-            end,
             capabilities = capabilities,
         }
 
@@ -108,6 +109,15 @@ local function config()
                     gofumpt = true,
                 },
             }
+        end
+
+        for _, server_autofmt in ipairs(servers_autofmt) do
+            if server == server_autofmt then
+                opts.on_attach = function(_, bufnr)
+                    create_format_autocmd(bufnr)
+                end
+                break
+            end
         end
 
         lspconfig[server].setup(opts)
