@@ -108,7 +108,7 @@ require('lazy').setup({
                     'git_config', 'git_rebase', 'gitcommit', 'gitignore',
                     'gitattributes', 'gomod', 'gosum', 'haskell', 'jq',
                     'latex', 'make', 'markdown', 'markdown_inline', 'ninja',
-                    'sql', 'ssh_config', 'terraform', 'norg',
+                    'sql', 'ssh_config', 'terraform', 'norg', 'ini',
                 },
                 sync_install = false,
                 highlight = { enable = true },
