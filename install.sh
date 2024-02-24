@@ -60,6 +60,7 @@ mkdir -p "$HOME/.cache/zsh"
 
 dotfiles=(
     ".config/lf"
+    ".config/yazi"
     ".config/.diricons"
     ".config/nvim"
     ".config/polybar"
@@ -70,7 +71,7 @@ dotfiles=(
     ".config/picom.conf"
     ".config/ranger"
     ".config/mpv"
-		".config/.gitmux.conf"
+    ".config/.gitmux.conf"
     ".tmux.conf"
     ".zshenv"
     ".Xresources"
