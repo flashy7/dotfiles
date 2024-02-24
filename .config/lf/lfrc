@@ -24,7 +24,7 @@ map gd cd ~/Downloads
 map gD cd ~/Desktop
 map gt cd ~/Trash
 map gr cd /media/ddrive
-map gP cd /media/ddrive/Stuff/.obj
+map gP cd /media/wd/Stuff
 map gw cd /media/windows
 map gs cd ~/Pictures/Screenshots
 
