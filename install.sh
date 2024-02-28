@@ -72,6 +72,7 @@ dotfiles=(
     ".config/ranger"
     ".config/mpv"
     ".config/.gitmux.conf"
+    ".config/mimeapps.list"
     ".tmux.conf"
     ".zshenv"
     ".Xresources"
