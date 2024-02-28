@@ -272,7 +272,6 @@ inoremap <silent> <C-S>         <C-O>:update<CR>
 nnoremap <C-K> :Gitsigns toggle_current_line_blame<CR>
 nnoremap U :Gitsigns reset_hunk<CR>
 
-autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.cpp :ClangFormat
 autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
