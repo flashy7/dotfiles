@@ -68,10 +68,8 @@ vim.api.nvim_create_autocmd('FileType', {
         'bash',
         'zsh',
         'vue',
-        'ts',
-        'js',
-        'jsx',
-        'tsx',
+        'typescript',
+        'javascript',
     },
     callback = function()
         opt_local.tabstop = 2
