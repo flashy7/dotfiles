@@ -184,7 +184,7 @@ nvim_lsp["eslint"].setup({
   end
 })
 
-local servers = { "pyright", "gopls", "clangd", "tsserver" }
+local servers = { "pyright", "gopls", "tsserver" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,

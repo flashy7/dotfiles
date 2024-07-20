@@ -20,5 +20,7 @@ xinput set-prop 'ELAN0415:00 04F3:3162 Touchpad' 'libinput Tapping Enabled' 1
 
 /usr/bin/prime-offload
 
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+
 exec dwm
 # exec cinnamon-session

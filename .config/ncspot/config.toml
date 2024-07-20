@@ -1,0 +1,3 @@
+use_nerdfont = true
+notify = true
+library_tabs = ["tracks", "playlists", "podcasts", "browse"]
