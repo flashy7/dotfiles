@@ -34,6 +34,8 @@ vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 
+map("n", "<leader>", "<NOP>")
+
 -- Save on Ctrl+S
 map('n', '<C-S>', ':update<CR>')
 map('v', '<C-S>', '<C-C>:update<CR>')

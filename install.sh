@@ -67,6 +67,7 @@ dotfiles=(
    .config/lf
    .config/.gitmux.conf
    .config/alacritty
+   .config/ncspot
 )
 
 for dotfile in "${dotfiles[@]}"; do

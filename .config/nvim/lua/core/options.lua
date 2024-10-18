@@ -9,6 +9,7 @@ opt.mouse = 'a'
 opt.lazyredraw = true -- Don't redraw during macros
 opt.undodir = vim.fn.stdpath('cache') .. '/undodir'
 opt.undofile = true
+opt.selection = 'exclusive'
 
 -- UI
 opt.number = true

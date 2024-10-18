@@ -193,5 +193,16 @@ require('lazy').setup({
                 },
             },
         },
+
+        {
+            'rafaelsq/nvim-goc.lua',
+            config = function ()
+                local goc = require('nvim-goc')
+                goc.setup()
+
+                vim.keymap.set('n', '<Leader>c', goc.Coverage, {silent=true})
+                vim.keymap.set('n', '<Leader>C', goc.ClearCoverage, {silent=true})
+            end,
+        },
     },
 })
